@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lista de Membros</title>
+</head>
+<body>
+    <h1>Adicionar Membro</h1>
+    <form action="/add" method="POST">
+        <input name="nome_game" placeholder="Nome no Game" required>
+        <input name="numero" placeholder="Número Real" required>
+        <input name="local" placeholder="Local" required>
+        <input name="recrutador" placeholder="Quem Recrutou" required>
+        <button type="submit">Adicionar</button>
+    </form>
+
+    <h2>Lista de Membros</h2>
+    <ul>
+        {% for membro in membros %}
+            <li>
+                <strong>ID:</strong> {{ membro[0] }} |
+                <strong>Nome:</strong> {{ membro[1] }} |
+                <strong>Número:</strong> {{ membro[2] }} |
+                <strong>Local:</strong> {{ membro[3] }} |
+                <strong>Recrutador:</strong> {{ membro[4] }}
+                <form action="/delete/{{ membro[0] }}" method="GET" style="display:inline;">
+                    <button type="submit">Remover</button>
+                </form>
+                <form action="/edit/{{ membro[0] }}" method="POST" style="display:inline;">
+                    <input name="nome_game" placeholder="Novo Nome" required>
+                    <input name="numero" placeholder="Novo Número" required>
+                    <input name="local" placeholder="Novo Local" required>
+                    <input name="recrutador" placeholder="Novo Recrutador" required>
+                    <button type="submit">Editar</button>
+                </form>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
